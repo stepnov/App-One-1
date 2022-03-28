@@ -20,7 +20,7 @@ export default function Error() {
       <div className={classes.logotype}>
         <img className={classes.logotypeIcon} src={logo} alt="logo" />
         <Typography variant="h3" className={classes.logotypeText}>
-          App One
+          App One 2
         </Typography>
       </div>
       <Paper classes={{ root: classes.paperRoot }}>

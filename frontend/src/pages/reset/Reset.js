@@ -60,7 +60,7 @@ function Reset(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>App One</Typography>
+        <Typography className={classes.logotypeText}>App One 2</Typography>
       </div>
       <div className={classes.customFormContainer}>
         <div className={classes.form}>

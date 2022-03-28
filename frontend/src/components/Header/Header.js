@@ -168,7 +168,7 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-App One
+App One 2
         </Typography>
         <div className={classes.grow} />
         <div
