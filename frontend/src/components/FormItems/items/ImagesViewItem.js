@@ -13,20 +13,25 @@ const ImagesViewItem = (props) => {
       return value;
     }
     return [value];
-  };
+  }
 
   if (!valueAsArray().length) {
     return null;
   }
 
   return (
-    <div className='form-group'>
-      <label className='col-form-label'>{label}</label>
+    <div className="form-group">
+      <label className="col-form-label">
+        {label}
+      </label>
       <br />
-      <ImagesUploader readonly value={valueAsArray()} />
+      <ImagesUploader
+        readonly
+        value={valueAsArray()}
+      />
     </div>
   );
-};
+}
 
 ImagesViewItem.propTypes = {
   label: PropTypes.string,

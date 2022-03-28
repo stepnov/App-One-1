@@ -28,13 +28,14 @@ export function changeNavbarColor(payload) {
 export function navbarTypeToggle(value) {
   return {
     type: NAVBAR_TYPE_TOGGLE,
-    payload: value,
-  };
+    payload: value
+  }
 }
 
 export function sidebarTypeToggle(value) {
   return {
     type: SIDEBAR_TYPE_TOGGLE,
-    payload: value,
-  };
+    payload: value
+  }
 }
+

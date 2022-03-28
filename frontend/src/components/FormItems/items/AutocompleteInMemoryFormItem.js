@@ -1,6 +1,6 @@
 import { FastField } from 'formik';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import FormErrors from 'view/shared/form/formErrors';
 import Select from 'react-select';
 
@@ -24,7 +24,7 @@ const AutocompleteInMemoryFormItem = (props) => {
     isClearable = true,
   } = props;
 
-  const [fullDataSource, setFullDataSource] = useState([]);
+  const [fullDataSource, setFullDataSource] = useState([])
   const [loading, setLoading] = useState(false);
 
   const valueOne = () => {
@@ -32,14 +32,14 @@ const AutocompleteInMemoryFormItem = (props) => {
       return mapper.toAutocomplete(form.values[name]);
     }
     return '';
-  };
+  }
 
   const valueMultiple = () => {
     if (form.values[name]) {
       return form.values[name].map((value) => mapper.toAutocomplete(value));
     }
     return [];
-  };
+  }
 
   const value = () => {
     if (mode === 'multiple') {
@@ -47,15 +47,15 @@ const AutocompleteInMemoryFormItem = (props) => {
     } else {
       return valueOne();
     }
-  };
+  }
 
   const handleSelectOne = (value) => {
     if (!value) {
       form.setFieldValue(name, '');
       return;
     }
-    form.setFieldValue(name, mapper.toValue(value));
-  };
+    form.setFieldValue(name, mapper.toValue(value))
+  }
 
   const handleSelectMultiple = (values) => {
     if (!values) {
@@ -64,7 +64,7 @@ const AutocompleteInMemoryFormItem = (props) => {
     }
     form.setFieldValue(
       name,
-      values.map((value) => mapper.toValue(value)),
+      values.map((value) => mapper.toValue(value))
     );
   };
 
@@ -81,9 +81,7 @@ const AutocompleteInMemoryFormItem = (props) => {
     setLoading(true);
     try {
       let fullDataSource = await fetchFn();
-      fullDataSource = fullDataSource.map((data) =>
-        mapper.toAutocomplete(data),
-      );
+      fullDataSource = fullDataSource.map((data) => mapper.toAutocomplete(data));
       setFullDataSource([...fullDataSource]);
       setLoading(false);
     } catch (error) {
@@ -108,7 +106,7 @@ const AutocompleteInMemoryFormItem = (props) => {
       }
     }
     return options;
-  };
+  }
 
   useEffect(() => {
     async function processData() {
@@ -117,24 +115,31 @@ const AutocompleteInMemoryFormItem = (props) => {
     processData();
   }, []);
 
-  const hintOrLoading = loading ? 'Loading' : hint;
+  const hintOrLoading = loading
+    ? 'Loading'
+    : hint;
 
-  const sizeLabelClassName =
-    {
-      small: 'col-form-label-sm',
-      large: 'col-form-label-lg',
-    }[size] || '';
+  const sizeLabelClassName = {
+    small: 'col-form-label-sm',
+    large: 'col-form-label-lg',
+  }[size] || '';
 
-  const isInvalid = !!FormErrors.displayableError(form, name, errorMessage);
+  const isInvalid = !!FormErrors.displayableError(
+    form,
+    name,
+    errorMessage,
+  );
 
   const controlStyles = isInvalid
     ? { control: (provided) => ({ ...provided, borderColor: 'red' }) }
     : undefined;
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
             <label
               className={`col-form-label ${
@@ -147,7 +152,7 @@ const AutocompleteInMemoryFormItem = (props) => {
           )}
           <div style={{ display: 'flex' }}>
             <Select
-              className='w-100'
+              className="w-100"
               styles={controlStyles}
               id={name}
               name={name}
@@ -158,33 +163,43 @@ const AutocompleteInMemoryFormItem = (props) => {
               value={value()}
               isClearable={isClearable}
               options={options()}
-              loadingMessage={() => i18n('autocomplete.loading')}
-              noOptionsMessage={() => i18n('autocomplete.noOptions')}
+              loadingMessage={() =>
+                i18n('autocomplete.loading')
+              }
+              noOptionsMessage={() =>
+                i18n('autocomplete.noOptions')
+              }
               {...inputProps}
             />
 
             {showCreate && hasPermissionToCreate ? (
               <button
                 style={{ marginLeft: '16px' }}
-                className='btn btn-primary'
-                type='button'
+                className="btn btn-primary"
+                type="button"
                 onClick={tonOpenModal}
               >
-                <i className='fas fa-plus'></i>
+                <i className="fas fa-plus"></i>
               </button>
             ) : null}
           </div>
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
           {!!hintOrLoading && (
-            <small className='form-text text-muted'>{hintOrLoading}</small>
+            <small className="form-text text-muted">
+              {hintOrLoading}
+            </small>
           )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 AutocompleteInMemoryFormItem.propTypes = {
   form: PropTypes.object.isRequired,

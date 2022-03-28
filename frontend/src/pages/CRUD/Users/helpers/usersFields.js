@@ -1,48 +1,71 @@
+
 const usersFields = {
-  id: { type: 'id', label: 'ID' },
+	id: { type: 'id', label: 'ID' },
 
-  firstName: { type: 'string', label: 'First Name' },
+    firstName: { type: 'string', label: 'First Name',
 
-  lastName: { type: 'string', label: 'Last Name' },
+    },
 
-  phoneNumber: { type: 'string', label: 'Phone Number' },
+    lastName: { type: 'string', label: 'Last Name',
 
-  email: { type: 'string', label: 'E-mail' },
+    },
 
-  role: {
-    type: 'enum',
-    label: 'Role',
+    phoneNumber: { type: 'string', label: 'Phone Number',
+
+    },
+
+    email: { type: 'string', label: 'E-mail',
+
+    },
+
+    role: { type: 'enum', label: 'Role',
 
     options: [
-      { value: 'admin', label: 'admin' },
 
-      { value: 'user', label: 'user' },
-    ],
-  },
+    { value: 'admin', label: 'admin' },
 
-  disabled: { type: 'boolean', label: 'Disabled' },
+    { value: 'user', label: 'user' },
 
-  avatar: { type: 'images', label: 'Avatar' },
+]
 
-  password: { type: 'string', label: 'Password' },
+    },
 
-  emailVerified: { type: 'boolean', label: 'Email Verified' },
+    disabled: { type: 'boolean', label: 'Disabled',
 
-  emailVerificationToken: { type: 'string', label: 'Verification Token' },
+    },
 
-  emailVerificationTokenExpiresAt: {
-    type: 'datetime',
-    label: 'Verification Token Expiration',
-  },
+    avatar: { type: 'images', label: 'Avatar',
 
-  passwordResetToken: { type: 'string', label: 'Password Reset Token' },
+    },
 
-  passwordResetTokenExpiresAt: {
-    type: 'datetime',
-    label: 'Password Reset Token Expiration',
-  },
+    password: { type: 'string', label: 'Password',
 
-  provider: { type: 'string', label: 'Provider' },
-};
+    },
+
+    emailVerified: { type: 'boolean', label: 'Email Verified',
+
+    },
+
+    emailVerificationToken: { type: 'string', label: 'Verification Token',
+
+    },
+
+    emailVerificationTokenExpiresAt: { type: 'datetime', label: 'Verification Token Expiration',
+
+    },
+
+    passwordResetToken: { type: 'string', label: 'Password Reset Token',
+
+    },
+
+    passwordResetTokenExpiresAt: { type: 'datetime', label: 'Password Reset Token Expiration',
+
+    },
+
+    provider: { type: 'string', label: 'Provider',
+
+    },
+
+}
 
 export default usersFields;

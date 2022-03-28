@@ -28,90 +28,103 @@ import FormValidations from 'components/FormItems/formValidations';
 import Widget from 'components/Widget';
 
 const CarsForm = (props) => {
+
   const {
-    isEditing,
-    isProfile,
-    findLoading,
-    saveLoading,
-    record,
-    onSubmit,
-    onCancel,
-    modal,
+  isEditing,
+  isProfile,
+  findLoading,
+  saveLoading,
+  record,
+  onSubmit,
+  onCancel,
+  modal
   } = props;
 
   const iniValues = () => {
-    return IniValues(carsFields, record || {});
-  };
+  return IniValues(carsFields, record || {});
+  }
 
   const formValidations = () => {
-    return FormValidations(carsFields, record || {});
-  };
+  return FormValidations(carsFields, record || {});
+  }
 
   const handleSubmit = (values) => {
-    const { id, ...data } = PreparedValues(carsFields, values || {});
-    onSubmit(id, data);
+  const { id, ...data } = PreparedValues(carsFields, values || {});
+  onSubmit(id, data);
   };
 
   const title = () => {
-    if (isProfile) {
-      return 'Edit My Profile';
-    }
+  if(isProfile) {
+  return 'Edit My Profile';
+  }
 
-    return isEditing ? 'Edit Cars' : 'Add Cars';
+  return isEditing
+  ? 'Edit Cars'
+  : 'Add Cars';
   };
 
   const renderForm = () => (
-    <Widget title={<h4>{title()}</h4>} collapse close>
-      <Formik
-        onSubmit={handleSubmit}
-        initialValues={iniValues()}
-        validationSchema={formValidations()}
-      >
-        {(form) => (
-          <form onSubmit={form.handleSubmit}>
-            <InputFormItem name={'model'} schema={carsFields} autoFocus />
+  <Widget title={<h4>{title()}</h4>} collapse close>
+  <Formik
+          onSubmit={handleSubmit}
+  initialValues={iniValues()}
+  validationSchema={formValidations()}
+  >
+  {(form) => (
+  <form onSubmit={form.handleSubmit}>
 
-            <div className='form-buttons'>
-              <button
-                className='btn btn-primary'
-                disabled={saveLoading}
-                type='button'
-                onClick={form.handleSubmit}
-              >
-                Save
-              </button>{' '}
-              <button
-                className='btn btn-light'
-                type='button'
-                disabled={saveLoading}
-                onClick={form.handleReset}
-              >
-                Reset
-              </button>{' '}
-              <button
-                className='btn btn-light'
-                type='button'
-                disabled={saveLoading}
-                onClick={() => onCancel()}
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        )}
-      </Formik>
-    </Widget>
-  );
+      <InputFormItem
+              name={'model'}
+      schema={carsFields}
 
-  if (findLoading) {
-    return <Loader />;
-  }
+        autoFocus
 
-  if (isEditing && !record) {
-    return <Loader />;
-  }
+      />
 
-  return renderForm();
-};
+  <div className="form-buttons">
+    <button
+            className="btn btn-primary"
+            disabled={saveLoading}
+    type="button"
+    onClick={form.handleSubmit}
+    >
+    Save
+  </button>{' '}{' '}
+
+  <button
+          className="btn btn-light"
+          type="button"
+          disabled={saveLoading}
+  onClick={form.handleReset}
+  >
+  Reset
+</button>{' '}{' '}
+
+  <button
+          className="btn btn-light"
+          type="button"
+          disabled={saveLoading}
+  onClick={() => onCancel()}
+  >
+  Cancel
+</button>
+        </div>
+        </form>
+        )
+        }
+        </Formik>
+        </Widget>
+        );
+
+        if (findLoading) {
+        return <Loader />;
+        }
+
+        if (isEditing && !record) {
+        return <Loader />;
+        }
+
+        return renderForm();
+        }
 
 export default CarsForm;

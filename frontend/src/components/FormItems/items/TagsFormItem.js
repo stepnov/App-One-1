@@ -27,7 +27,7 @@ const TagsFormItem = (props) => {
     const commaSplittedValues = data
       .map((item) => item.value)
       .join(',')
-      .split(',');
+      .split(',')
 
     form.setFieldValue(name, commaSplittedValues);
   };
@@ -43,24 +43,34 @@ const TagsFormItem = (props) => {
     }));
   };
 
-  const isInvalid = !!FormErrors.displayableError(form, name, errorMessage);
+  const isInvalid = !!FormErrors.displayableError(
+    form,
+    name,
+    errorMessage,
+  );
 
   const controlStyles = isInvalid
-    ? { control: (provided) => ({ ...provided, borderColor: 'red' }) }
+    ? { control: (provided) => ({...provided, borderColor: 'red',}) }
     : undefined;
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
-            <label className={`col-form-label ${required ? 'required' : null}`}>
+            <label
+              className={`col-form-label ${
+                required ? 'required' : null
+              }`}
+            >
               {label}
             </label>
           )}
           <br />
           <CreatableSelect
-            className='w-100'
+            className="w-100"
             value={value()}
             onChange={handleChange}
             id={name}
@@ -70,20 +80,30 @@ const TagsFormItem = (props) => {
             styles={controlStyles}
             isMulti
             formatCreateLabel={(inputValue) => inputValue}
-            loadingMessage={() => i18n('autocomplete.loading')}
+            loadingMessage={() =>
+              i18n('autocomplete.loading')
+            }
             noOptionsMessage={() => notFoundContent || ''}
           />
 
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
 
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 TagsFormItem.propTypes = {
   name: PropTypes.string.isRequired,

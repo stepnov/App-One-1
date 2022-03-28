@@ -28,20 +28,22 @@ const AutocompleteFormItem = (props) => {
 
   const valueOne = () => {
     if (form.values[name]) {
-      return mapper.intoSelect(form.values[name]);
+      return mapper.intoSelect(form.values[name])
     }
     return '';
   };
 
   const valueMultiple = () => {
     if (form.values[name]) {
-      return form.values[name].map((value) => mapper.intoSelect(value));
+      return form.values[name].map((value) => mapper.intoSelect(value))
     }
     return [];
   };
 
   const value = () => {
-    return mode === 'multiple' ? valueMultiple() : valueOne();
+    return (mode === 'multiple')
+      ? valueMultiple()
+      : valueOne()
   };
 
   const handleSelectOne = (value) => {
@@ -60,9 +62,9 @@ const AutocompleteFormItem = (props) => {
 
     form.setFieldValue(
       name,
-      values.map((value) => mapper.intoValue(value)),
+      values.map((value) => mapper.intoValue(value))
     );
-  };
+  }
 
   const handleSelect = (value) => {
     form.setFieldTouched(name);
@@ -75,80 +77,89 @@ const AutocompleteFormItem = (props) => {
 
   const handleSearch = async (value) => {
     try {
-      const results = await fetchFn(value, AUTOCOMPLETE_SERVER_FETCH_SIZE);
+      const results = await fetchFn(
+        value,
+        AUTOCOMPLETE_SERVER_FETCH_SIZE,
+      );
       return results.map((result) => mapper.intoSelect(result));
+
     } catch (error) {
       console.error(error);
       return [];
     }
-  };
+  }
 
-  const sizeLabelClassName =
-    {
-      small: 'col-form-label-sm',
-      large: 'col-form-label-lg',
-    }[size] || '';
+  const sizeLabelClassName = {
+    small: 'col-form-label-sm',
+    large: 'col-form-label-lg',
+  }[size] || '';
 
-  const isInvalid = !!FormErrors.displayableError(form, name, errorMessage);
+  const isInvalid = !!FormErrors.displayableError(
+    form,
+    name,
+    errorMessage,
+  );
 
   const controlStyles = isInvalid
     ? {
-        control: (provided) => ({
-          ...provided,
-          borderColor: '#d04f4f',
-          backgroundColor: '#fff',
-          color: '#a3aeb7',
-        }),
-        option: (provided, state) => ({
-          ...provided,
-          backgroundColor: '#fff',
-          borderBottom: '1px dotted #1B1E3C',
-          color: state.isSelected ? '#595D78' : '#a3aeb7',
-          padding: 20,
-        }),
-        singleValue: (provided) => ({
-          ...provided,
-          color: '#a3aeb7',
-        }),
-        menu: (provided, state) => ({
-          ...provided,
-          backgroundColor: '#fff',
-        }),
-        valueContainer: (provided, state) => ({
-          ...provided,
-          color: '#a3aeb7',
-        }),
-      }
+      control: (provided) => ({
+        ...provided,
+        borderColor: '#d04f4f',
+        backgroundColor: '#fff',
+        color: '#a3aeb7',
+      }),
+      option: (provided, state) => ({
+        ...provided,
+        backgroundColor: '#fff',
+        borderBottom: '1px dotted #1B1E3C',
+        color: state.isSelected ? '#595D78' : '#a3aeb7',
+        padding: 20,
+      }),
+      singleValue: (provided) => ({
+        ...provided,
+        color: '#a3aeb7',
+      }),
+      menu: (provided, state) => ({
+        ...provided,
+        backgroundColor: '#fff',
+      }),
+      valueContainer: (provided, state) => ({
+        ...provided,
+        color: '#a3aeb7',
+      }),
+    }
     : {
-        control: (provided) => ({
-          ...provided,
-          backgroundColor: '#fff',
-          color: '#a3aeb7',
-        }),
-        option: (provided, state) => ({
-          ...provided,
-          backgroundColor: '#fff',
-          color: state.isSelected ? '#595D78' : '#a3aeb7',
-          padding: 20,
-        }),
-        singleValue: (provided) => ({
-          ...provided,
-          color: '#a3aeb7',
-        }),
-        menu: (provided, state) => ({
-          ...provided,
-          backgroundColor: '#fff',
-        }),
-        valueContainer: (provided, state) => ({
-          ...provided,
-          color: '#a3aeb7',
-        }),
-      };
+      control: (provided) => ({
+        ...provided,
+        backgroundColor: '#fff',
+        color: '#a3aeb7',
+      }),
+      option: (provided, state) => ({
+        ...provided,
+        backgroundColor: '#fff',
+        color: state.isSelected ? '#595D78' : '#a3aeb7',
+        padding: 20,
+      }),
+      singleValue: (provided) => ({
+        ...provided,
+        color: '#a3aeb7',
+      }),
+      menu: (provided, state) => ({
+        ...provided,
+        backgroundColor: '#fff',
+      }),
+      valueContainer: (provided, state) => ({
+        ...provided,
+        color: '#a3aeb7',
+      }),
+    };
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
             <label
               className={`col-form-label ${
@@ -161,7 +172,7 @@ const AutocompleteFormItem = (props) => {
           )}
           <div style={{ display: 'flex' }}>
             <AsyncSelect
-              className='w-100'
+              className="w-100"
               styles={controlStyles}
               id={name}
               name={name}
@@ -177,15 +188,23 @@ const AutocompleteFormItem = (props) => {
             />
           </div>
 
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 AutocompleteFormItem.propTypes = {
   fetchFn: PropTypes.func.isRequired,

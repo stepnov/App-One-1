@@ -4,18 +4,22 @@ import actions from 'actions/cars/carsFormActions';
 import { connect } from 'react-redux';
 
 const CarsViewPage = (props) => {
+
   const { dispatch, match, loading, record } = props;
 
   useEffect(() => {
-    dispatch(actions.doFind(match.params.id));
+    dispatch(actions.doFind(match.params.id))
   }, [match]);
 
   return (
     <React.Fragment>
-      <CarsWidget loading={loading} record={record} />
+      <CarsWidget
+      loading={loading}
+      record={record}
+      />
     </React.Fragment>
   );
-};
+}
 
 function mapStateToProps(store) {
   return {

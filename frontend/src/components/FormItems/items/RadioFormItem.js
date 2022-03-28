@@ -4,16 +4,28 @@ import FormErrors from 'components/FormItems/formErrors';
 import { FastField } from 'formik';
 
 const RadioFormItem = (props) => {
-  const { name, schema, hint, errorMessage, required = false } = props;
+  const {
+    name,
+    schema,
+    hint,
+    errorMessage,
+    required = false
+  } = props;
 
   const { label, options } = schema[name];
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
-            <label className={`col-form-label ${required ? 'required' : null}`}>
+            <label
+              className={`col-form-label ${
+                required ? 'required' : null
+              }`}
+            >
               {label}
             </label>
           )}
@@ -21,14 +33,17 @@ const RadioFormItem = (props) => {
           <br />
 
           {options.map((option) => (
-            <div key={option.value} className='form-check form-check-inline'>
+            <div
+              key={option.value}
+              className="form-check form-check-inline"
+            >
               <input
                 className={`form-check-input ${FormErrors.validateStatus(
                   form,
                   name,
                   errorMessage,
                 )}`}
-                type='radio'
+                type="radio"
                 id={`${name}-${option.value}`}
                 name={`${name}-${option.value}`}
                 value={option.value}
@@ -40,23 +55,31 @@ const RadioFormItem = (props) => {
               />
               <label
                 htmlFor={`${name}-${option.value}`}
-                className='form-check-label'
+                className="form-check-label"
               >
                 {option.label}
               </label>
             </div>
           ))}
 
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
 
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 RadioFormItem.propTypes = {
   name: PropTypes.string.isRequired,

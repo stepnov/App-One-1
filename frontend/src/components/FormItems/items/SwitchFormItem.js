@@ -4,8 +4,15 @@ import FormErrors from 'components/FormItems/formErrors';
 import { FastField } from 'formik';
 
 const SwitchFormItem = (props) => {
-  const { name, schema, hint, size, inputProps, errorMessage, required } =
-    props;
+  const {
+    name,
+    schema,
+    hint,
+    size,
+    inputProps,
+    errorMessage,
+    required
+  } = props;
 
   const { label } = schema[name];
 
@@ -16,9 +23,11 @@ const SwitchFormItem = (props) => {
     }[size] || '';
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
             <label
               className={`col-form-label ${
@@ -31,27 +40,42 @@ const SwitchFormItem = (props) => {
           )}
           <div>
             <input
-              type='checkbox'
+              type="checkbox"
               id={name}
               name={name}
               onChange={(event) => {
-                form.setFieldValue(name, event.target.checked);
+                form.setFieldValue(
+                  name,
+                  event.target.checked,
+                );
                 form.setFieldTouched(name);
               }}
               checked={!!form.values[name]}
               {...inputProps}
             />
-            <label htmlFor={name}>&#160;</label>
+            <label
+              htmlFor={name}
+            >
+              &#160;
+            </label>
           </div>
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 SwitchFormItem.propTypes = {
   name: PropTypes.string.isRequired,

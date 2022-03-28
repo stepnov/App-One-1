@@ -11,18 +11,20 @@ const TextViewItem = (props) => {
   const inputValue = `${prefix ? `${prefix} ` : ''}${value}`;
 
   return (
-    <div className='form-group'>
-      <label className='col-form-label'>{label}</label>
+    <div className="form-group">
+      <label className="col-form-label">
+        {label}
+      </label>
 
       <input
-        type='text'
+        type="text"
         readOnly
-        className='form-control-plaintext'
+        className="form-control-plaintext"
         value={inputValue}
       />
     </div>
   );
-};
+}
 
 TextViewItem.propTypes = {
   label: PropTypes.string,

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ImagesUploaderWrapper = styled.div`
   .img-card:hover .img-buttons {

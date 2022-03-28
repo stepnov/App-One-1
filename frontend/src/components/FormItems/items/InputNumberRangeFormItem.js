@@ -20,7 +20,7 @@ const InputNumberRangeFormItem = (props) => {
 
   const value = () => {
     return form.values[name];
-  };
+  }
 
   const startValue = () => {
     if (!value()) {
@@ -60,22 +60,22 @@ const InputNumberRangeFormItem = (props) => {
     form.setFieldValue(name, [startValue(), value]);
   };
 
-  const sizeLabelClassName =
-    {
-      small: 'col-form-label-sm',
-      large: 'col-form-label-lg',
-    }[size] || '';
+  const sizeLabelClassName = {
+    small: 'col-form-label-sm',
+    large: 'col-form-label-lg',
+  }[size] || '';
 
-  const sizeInputClassName =
-    {
-      small: 'form-control-sm',
-      large: 'form-control-lg',
-    }[size] || '';
+  const sizeInputClassName = {
+    small: 'form-control-sm',
+    large: 'form-control-lg',
+  }[size] || '';
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
             <label
               className={`col-form-label ${
@@ -95,9 +95,11 @@ const InputNumberRangeFormItem = (props) => {
           >
             <input
               style={{ width: '100%' }}
-              type='number'
+              type="number"
               id={`${name}Start`}
-              onChange={(event) => handleStartChanged(event.target.value)}
+              onChange={(event) =>
+                handleStartChanged(event.target.value)
+              }
               value={startValue()}
               placeholder={placeholder || undefined}
               autoFocus={autoFocus || undefined}
@@ -122,9 +124,11 @@ const InputNumberRangeFormItem = (props) => {
 
             <input
               style={{ width: '100%' }}
-              type='number'
+              type="number"
               id={`${name}End`}
-              onChange={(event) => handleEndChanged(event.target.value)}
+              onChange={(event) =>
+                handleEndChanged(event.target.value)
+              }
               value={endValue()}
               placeholder={placeholder || undefined}
               autoFocus={autoFocus || undefined}
@@ -137,15 +141,24 @@ const InputNumberRangeFormItem = (props) => {
               {...inputProps}
             />
           </div>
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
+
 
 InputNumberRangeFormItem.propTypes = {
   name: PropTypes.string.isRequired,

@@ -1,41 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col } from 'reactstrap';
+import React, { useState, useEffect } from "react";
+import {
+  Row,
+  Col,
+} from 'reactstrap';
 import { CircularProgress, Box } from '@material-ui/core';
-import reactLogo from '../../images/react-logo.svg';
+import reactLogo from '../../images/react-logo.svg'
 import {
   useManagementDispatch,
   useManagementState,
-} from '../../context/ManagementContext';
+} from '../../context/ManagementContext'
 // components
-import Widget from '../../components/Widget';
+import Widget from "../../components/Widget";
+
 
 const Dashboard = () => {
-  const managementDispatch = useManagementDispatch();
-  const managementValue = useManagementState();
+
+  const managementDispatch = useManagementDispatch()
+  const managementValue = useManagementState()
 
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    setCurrentUser(managementValue.currentUser);
-  }, [managementDispatch, managementValue]);
+    setCurrentUser(managementValue.currentUser)
+  }, [managementDispatch, managementValue])
 
   if (!currentUser) {
     return (
       <Box
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-        minHeight='100vh'
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
       >
-        <CircularProgress />
+        <CircularProgress/>
       </Box>
-    );
+    )
   }
 
   return (
     <div>
-      <h1 className='page-title'>
-        Welcome, {currentUser.firstName}! <br />
+      <h1 className="page-title">Welcome, {currentUser.firstName}! <br/>
         <small>
           <small>Your role is {currentUser.role}</small>
         </small>
@@ -43,9 +47,9 @@ const Dashboard = () => {
       <Row>
         <Col lg={6}>
           <Widget>
-            <Row className={'align-items-center'}>
+            <Row className={"align-items-center"}>
               <Col md={6}>
-                <img src={reactLogo} alt='react' />
+                <img src={reactLogo} alt="react"/>
               </Col>
             </Row>
           </Widget>
@@ -53,6 +57,6 @@ const Dashboard = () => {
       </Row>
     </div>
   );
-};
+}
 
 export default Dashboard;

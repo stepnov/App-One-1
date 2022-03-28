@@ -3,23 +3,24 @@ import axios from 'axios';
 
 async function list(filter) {
   const response = await axios.get(
-    `/cars?page=${filter.page}&limit=${filter.limit}&cars=${
-      filter.cars ? filter.cars : ''
-    }`,
+    `/cars?page=${filter.page}&limit=${filter.limit}&cars=${filter.cars ? filter.cars : ''}`,
   );
   return response.data;
 }
 
 async function filterCars(request, filter) {
-  const response = await axios.get(
-    `/cars?page=${filter.page}&limit=${filter.limit}${request}`,
-  );
+  const response = await axios.get(`/cars?page=${filter.page}&limit=${filter.limit}${request}`);
   return response.data;
 }
 
 const actions = {
-  doFilter: (request, filter) => async (dispatch, getState) => {
+
+  doFilter: (request, filter) => async (
+    dispatch,
+    getState,
+  ) => {
     try {
+
       const response = await filterCars(request, filter);
 
       dispatch({
@@ -32,36 +33,37 @@ const actions = {
       Errors.handle(error);
       dispatch({
         type: 'CARS_LIST_FETCH_ERROR',
-      });
+      })
     }
   },
 
-  doFetch:
-    (filter, keepPagination = false) =>
-    async (dispatch, getState) => {
-      try {
-        dispatch({
-          type: 'CARS_LIST_FETCH_STARTED',
-          payload: { filter, keepPagination },
-        });
+  doFetch: (filter, keepPagination = false) => async (
+    dispatch,
+    getState,
+  ) => {
+    try {
+      dispatch({
+        type: 'CARS_LIST_FETCH_STARTED',
+        payload: { filter, keepPagination },
+      });
 
-        const response = await list(filter);
+      const response = await list(filter);
 
-        dispatch({
-          type: 'CARS_LIST_FETCH_SUCCESS',
-          payload: {
-            rows: response.rows,
-            count: response.count,
-          },
-        });
-      } catch (error) {
-        Errors.handle(error);
+      dispatch({
+        type: 'CARS_LIST_FETCH_SUCCESS',
+        payload: {
+          rows: response.rows,
+          count: response.count,
+        },
+      });
+    } catch (error) {
+      Errors.handle(error);
 
-        dispatch({
-          type: 'CARS_LIST_FETCH_ERROR',
-        });
-      }
-    },
+      dispatch({
+        type: 'CARS_LIST_FETCH_ERROR',
+      });
+    }
+  },
 
   doDelete: (id) => async (dispatch) => {
     try {
@@ -69,7 +71,7 @@ const actions = {
         type: 'CARS_LIST_DELETE_STARTED',
       });
 
-      await axios.delete(`/cars/${id}`);
+      await axios.delete(`/cars/${id}`)
 
       dispatch({
         type: 'CARS_LIST_DELETE_SUCCESS',
@@ -83,6 +85,7 @@ const actions = {
           count: response.count,
         },
       });
+
     } catch (error) {
       Errors.handle(error);
 
@@ -92,18 +95,19 @@ const actions = {
     }
   },
   doOpenConfirm: (id) => async (dispatch) => {
-    dispatch({
-      type: 'CARS_LIST_OPEN_CONFIRM',
-      payload: {
-        id: id,
-      },
-    });
+      dispatch({
+        type: 'CARS_LIST_OPEN_CONFIRM',
+        payload: {
+          id: id
+        },
+      });
   },
   doCloseConfirm: () => async (dispatch) => {
-    dispatch({
-      type: 'CARS_LIST_CLOSE_CONFIRM',
-    });
+      dispatch({
+        type: 'CARS_LIST_CLOSE_CONFIRM',
+      });
   },
 };
+
 
 export default actions;

@@ -20,10 +20,10 @@ const SelectFormItem = (props) => {
 
   const value = () => {
     if (form.values[name]) {
-      return options.find((option) => option.value === form.values[name]);
+      return options.find((option) => option.value === form.values[name])
     }
     return '';
-  };
+  }
 
   const handleSelect = (data) => {
     form.setFieldTouched(name);
@@ -34,26 +34,36 @@ const SelectFormItem = (props) => {
     }
 
     form.setFieldValue(name, data.value);
-  };
+  }
 
-  const isInvalid = !!FormErrors.displayableError(form, name, errorMessage);
+  const isInvalid = !!FormErrors.displayableError(
+    form,
+    name,
+    errorMessage,
+  );
 
   const controlStyles = isInvalid
-    ? { control: (provided) => ({ ...provided, borderColor: 'red' }) }
+    ? { control: (provided) => ({ ...provided, borderColor: 'red'}) }
     : undefined;
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
-            <label className={`col-form-label ${required ? 'required' : null}`}>
+            <label
+              className={`col-form-label ${
+                required ? 'required' : null
+              }`}
+            >
               {label}
             </label>
           )}
           <br />
           <Select
-            className='w-100'
+            className="w-100"
             value={value()}
             onChange={handleSelect}
             id={name}
@@ -67,16 +77,24 @@ const SelectFormItem = (props) => {
             noOptionsMessage={'No options'}
           />
 
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
 
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 SelectFormItem.propTypes = {
   form: PropTypes.object.isRequired,

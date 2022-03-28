@@ -21,9 +21,7 @@ const CarsSelectItem = (props) => {
       }
 
       const value = originalValue.id;
-      let label = originalValue.label
-        ? originalValue.label
-        : originalValue.model;
+      let label = originalValue.label ? originalValue.label : originalValue.model;
 
       return {
         key: value,
@@ -44,7 +42,10 @@ const CarsSelectItem = (props) => {
     },
   };
 
-  const { form, ...rest } = props;
+  const {
+    form,
+    ...rest
+  } = props;
 
   return (
     <React.Fragment>
@@ -56,10 +57,12 @@ const CarsSelectItem = (props) => {
       />
     </React.Fragment>
   );
-};
+}
 
 const select = (state) => ({
-  hasPermissionToCreate: state.cars.hasPermissionToCreate,
+  hasPermissionToCreate: state.cars.hasPermissionToCreate
 });
 
-export default connect(select)(CarsSelectItem);
+export default connect(select)(
+  CarsSelectItem,
+);

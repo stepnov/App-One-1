@@ -2,14 +2,14 @@
 @import '../../node_modules/react-toastify/dist/ReactToastify.css';
 
 .modal.show .modal-dialog {
-  transform: translateY(50%);
+    transform: translateY(50%);
 }
 .react-bs-table-container {
-  width: 98%;
-  min-width: 900px;
-  tbody tr td:last-child {
-    white-space: normal;
-  }
+    width: 98%;
+    min-width: 900px;
+    tbody tr td:last-child {
+        white-space: normal;
+    }
 }
 
 .react-bootstrap-table th {
@@ -25,11 +25,7 @@
   display: none;
 }
 
-.react-bootstrap-table th > .react-bootstrap-table-sort-order > .caret,
-.react-bootstrap-table .dropup,
-.react-bootstrap-table .dropright,
-.react-bootstrap-table .dropdown,
-.react-bootstrap-table .dropleft {
+.react-bootstrap-table th>.react-bootstrap-table-sort-order>.caret, .react-bootstrap-table .dropup, .react-bootstrap-table .dropright, .react-bootstrap-table .dropdown, .react-bootstrap-table .dropleft {
   position: absolute;
   right: 0;
 }
@@ -43,24 +39,23 @@
   max-width: 200px;
 }
 
-.dropup .caret,
-.navbar-fixed-bottom .dropdown .caret {
-  content: '';
+.dropup .caret, .navbar-fixed-bottom .dropdown .caret {
+  content: "";
   border-top: 0;
   border-bottom: 4px dashed;
 }
 
-.react-bootstrap-table th > .react-bootstrap-table-sort-order > .caret {
-  margin: 7px 6.5px !important;
+.react-bootstrap-table th>.react-bootstrap-table-sort-order>.caret {
+  margin: 7px 6.5px!important;
 }
 
-.react-bootstrap-table th .order > .dropup > .caret {
-  margin: 6px 4px !important;
+.react-bootstrap-table th .order>.dropup>.caret {
+  margin: 6px 4px!important;
   color: #ccc;
 }
 
-.react-bootstrap-table th .order > .dropdown > .caret {
-  margin: 8px -1px 10px 10px !important;
+.react-bootstrap-table th .order>.dropdown>.caret {
+  margin: 8px -1px 10px 10px!important;
   color: #ccc;
 }
 

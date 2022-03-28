@@ -19,12 +19,16 @@ const ImagesFormItem = (props) => {
   const { label } = schema[name];
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
             <label
-              className={`col-form-label ${required ? 'required' : null}`}
+              className={`col-form-label ${
+                required ? 'required' : null
+              }`}
               htmlFor={name}
             >
               {label}
@@ -43,15 +47,19 @@ const ImagesFormItem = (props) => {
             {...inputProps}
           />
 
-          <div className='invalid-feedback'>
+          <div className="invalid-feedback">
             {FormErrors.displayableError(form, name)}
           </div>
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 ImagesFormItem.propTypes = {
   path: PropTypes.string.isRequired,

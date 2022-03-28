@@ -25,7 +25,7 @@ const DatePickerRangeFormItem = (props) => {
 
   const value = () => {
     return form.values[name];
-  };
+  }
 
   const startValue = () => {
     if (!value()) {
@@ -65,22 +65,22 @@ const DatePickerRangeFormItem = (props) => {
     form.setFieldValue(name, [startValue(), value]);
   };
 
-  const sizeLabelClassName =
-    {
-      small: 'col-form-label-sm',
-      large: 'col-form-label-lg',
-    }[size] || '';
+  const sizeLabelClassName = {
+    small: 'col-form-label-sm',
+    large: 'col-form-label-lg',
+  }[size] || '';
 
-  const sizeInputClassName =
-    {
-      small: 'form-control-sm',
-      large: 'form-control-lg',
-    }[size] || '';
+  const sizeInputClassName = {
+    small: 'form-control-sm',
+    large: 'form-control-lg',
+  }[size] || '';
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
             <label
               className={`col-form-label ${
@@ -100,7 +100,9 @@ const DatePickerRangeFormItem = (props) => {
           >
             <DatePicker
               id={`${name}Start`}
-              onChange={(value) => handleStartChanged(value)}
+              onChange={(value) =>
+                handleStartChanged(value)
+              }
               selected={startValue()}
               className={`form-control ${sizeInputClassName} ${FormErrors.validateStatus(
                 form,
@@ -118,7 +120,11 @@ const DatePickerRangeFormItem = (props) => {
               placeholderText={placeholder || ''}
               autoFocus={autoFocus || undefined}
               autoComplete={autoComplete || undefined}
-              dateFormat={showTimeInput ? 'yyyy-MM-dd HH:mm' : 'yyyy-MM-dd'}
+              dateFormat={
+                showTimeInput
+                  ? 'yyyy-MM-dd HH:mm'
+                  : 'yyyy-MM-dd'
+              }
               timeIntervals={15}
               {...inputProps}
             />
@@ -135,7 +141,9 @@ const DatePickerRangeFormItem = (props) => {
 
             <DatePicker
               id={`${name}End`}
-              onChange={(value) => handleEndChanged(value)}
+              onChange={(value) =>
+                handleEndChanged(value)
+              }
               selected={endValue()}
               className={`form-control ${sizeInputClassName} ${FormErrors.validateStatus(
                 form,
@@ -146,7 +154,11 @@ const DatePickerRangeFormItem = (props) => {
               placeholderText={placeholder || ''}
               autoFocus={autoFocus || undefined}
               autoComplete={autoComplete || undefined}
-              dateFormat={showTimeInput ? 'yyyy-MM-dd HH:mm' : 'yyyy-MM-dd'}
+              dateFormat={
+                showTimeInput
+                  ? 'yyyy-MM-dd HH:mm'
+                  : 'yyyy-MM-dd'
+              }
               timeIntervals={15}
               popperModifiers={{
                 preventOverflow: {
@@ -158,15 +170,23 @@ const DatePickerRangeFormItem = (props) => {
               {...inputProps}
             />
           </div>
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
-  );
-};
+  )
+}
 
 DatePickerRangeFormItem.propTypes = {
   name: PropTypes.string.isRequired,

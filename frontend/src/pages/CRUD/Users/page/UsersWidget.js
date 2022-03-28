@@ -9,17 +9,35 @@ const UsersWidget = (props) => {
 
   const renderView = () => (
     <Widget title={<h4>{'View User'}</h4>} collapse close>
-      <ImagesViewItem label={'Avatar'} value={record.avatar} />
+      <ImagesViewItem
+        label={'Avatar'}
+        value={record.avatar}
+      />
 
-      <TextViewItem label={'First name'} value={record.firstName} />
+      <TextViewItem
+        label={'First name'}
+        value={record.firstName}
+      />
 
-      <TextViewItem label={'Last Name'} value={record.lastName} />
+      <TextViewItem
+        label={'Last Name'}
+        value={record.lastName}
+      />
 
-      <TextViewItem label={'Phone number'} value={record.phoneNumber} />
+      <TextViewItem
+        label={'Phone number'}
+        value={record.phoneNumber}
+      />
 
-      <TextViewItem label={'Email'} value={record.email} />
+      <TextViewItem
+        label={'Email'}
+        value={record.email}
+      />
 
-      <TextViewItem label={'Disabled'} value={record.disabled} />
+      <TextViewItem
+        label={'Disabled'}
+        value={record.disabled}
+      />
     </Widget>
   );
 
@@ -28,6 +46,6 @@ const UsersWidget = (props) => {
   }
 
   return renderView();
-};
+}
 
 export default UsersWidget;

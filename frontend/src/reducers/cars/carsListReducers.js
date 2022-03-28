@@ -4,12 +4,13 @@ const initialData = {
 };
 
 export default (state = initialData, { type, payload }) => {
+
   if (type === 'CARS_LIST_FILTERED') {
     return {
       ...state,
       loading: false,
       rows: payload.rows,
-    };
+    }
   }
 
   if (type === 'CARS_LIST_FETCH_STARTED') {
@@ -63,7 +64,7 @@ export default (state = initialData, { type, payload }) => {
       ...state,
       loading: false,
       modalOpen: true,
-      idToDelete: payload.id,
+      idToDelete: payload.id
     };
   }
 

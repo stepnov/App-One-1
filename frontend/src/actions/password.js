@@ -4,31 +4,27 @@ import { push } from 'connected-react-router';
 import { toast } from 'react-toastify';
 
 const actions = {
-  doChangePassword:
-    ({ newPassword, currentPassword }) =>
-    async (dispatch) => {
-      try {
-        dispatch({
-          type: 'USERS_FORM_CREATE_STARTED',
-        });
-        await axios.put('/auth/password-update', {
-          newPassword,
-          currentPassword,
-        });
-        dispatch({
-          type: 'USERS_FORM_UPDATE_SUCCESS',
-        });
+  doChangePassword: ({newPassword, currentPassword}) => async (dispatch) => {
+    try {
+      dispatch({
+        type: 'USERS_FORM_CREATE_STARTED',
+      });
+      await axios.put('/auth/password-update', {newPassword, currentPassword})
+      dispatch({
+        type: 'USERS_FORM_UPDATE_SUCCESS',
+      });
 
-        toast.success('Password has been updated');
-        dispatch(push('/app/dashboard'));
-      } catch (error) {
-        Errors.handle(error);
+      toast.success('Password has been updated');
+      dispatch(push('/app/dashboard'));
 
-        dispatch({
-          type: 'USERS_FORM_CREATE_ERROR',
-        });
-      }
-    },
+    } catch (error) {
+      Errors.handle(error);
+
+      dispatch({
+        type: 'USERS_FORM_CREATE_ERROR',
+      });
+    }
+  },
 };
 
 export default actions;

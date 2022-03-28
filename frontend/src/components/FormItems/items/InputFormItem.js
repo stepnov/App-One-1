@@ -33,9 +33,11 @@ const InputFormItem = (props) => {
     }[size] || '';
 
   return (
-    <FastField name={name}>
+    <FastField
+      name={name}
+    >
       {({ form }) => (
-        <div className='form-group'>
+        <div className="form-group">
           {!!label && (
             <label
               className={`col-form-label ${
@@ -64,15 +66,23 @@ const InputFormItem = (props) => {
             )}`}
             {...inputProps}
           />
-          <div className='invalid-feedback'>
-            {FormErrors.displayableError(form, name, errorMessage)}
+          <div className="invalid-feedback">
+            {FormErrors.displayableError(
+              form,
+              name,
+              errorMessage,
+            )}
           </div>
-          {!!hint && <small className='form-text text-muted'>{hint}</small>}
+          {!!hint && (
+            <small className="form-text text-muted">
+              {hint}
+            </small>
+          )}
         </div>
       )}
     </FastField>
   );
-};
+}
 
 InputFormItem.propTypes = {
   name: PropTypes.string.isRequired,

@@ -4,18 +4,22 @@ import actions from 'actions/users/usersFormActions';
 import { connect } from 'react-redux';
 
 const UsersViewPage = (props) => {
+
   const { dispatch, match, loading, record } = props;
 
   useEffect(() => {
-    dispatch(actions.doFind(match.params.id));
+    dispatch(actions.doFind(match.params.id))
   }, [match]);
 
   return (
     <React.Fragment>
-      <UsersWidget loading={loading} record={record} />
+      <UsersWidget
+      loading={loading}
+      record={record}
+      />
     </React.Fragment>
   );
-};
+}
 
 function mapStateToProps(store) {
   return {
